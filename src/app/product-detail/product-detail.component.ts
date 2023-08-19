@@ -19,15 +19,19 @@ export class ProductDetailComponent {
   методы для отмены этой подписки, когда она больше не нужна. Это важно для предотвращения утечек ресурсов и
   неиспользуемых подписок.*/
 
-  constructor(private _Activatedroute: ActivatedRoute,
+  constructor(private _ActivatedRoute: ActivatedRoute,
               private _router: Router,
               private _productService: ProductService) {
   }
 
+/*ActivatedRoute - это сервис в Angular, предоставляющий информацию о текущем активном маршруте и его параметрах.
+  Он используется для извлечения данных из URL-адреса и маршрутизации на основе этих
+  данных. ActivatedRoute предоставляет доступ к параметрам маршрута, фрагменту URL
+  и другой информации о текущем маршруте. */
 
   ngOnInit() {
-    this.sub = this._Activatedroute.params.subscribe(params => {
-      this.id = params['id'];
+    this.sub = this._ActivatedRoute.params.subscribe(params => {
+      this.id = params['id']; //'Id из маршрута:', id
       let products = this._productService.getProducts();
       this.product = products.find(p => p.productID == this.id);
     });
@@ -35,7 +39,7 @@ export class ProductDetailComponent {
 
   /* Using snapshot
   ngOnInit() {
-      this.id=this._Activatedroute.snapshot.params['id'];
+      this.id=this._ActivatedRoute.snapshot.params['id'];
       let products=this._productService.getProducts();
       this.product=products.find(p => p.productID==this.id);
   }

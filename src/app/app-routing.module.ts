@@ -17,7 +17,9 @@ export const appRoutes: Routes = [
   { path: 'product', component: ProductComponent },
   { path: 'product/:id', component: ProductDetailComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: '**', component: ErrorComponent }
+  { path: '**', component: ErrorComponent } //используется как "заглушка" для обработки всех маршрутов, которые не соответствуют ни одному из
+                                            // определенных маршрутов. Это означает, что если URL-адрес не совпадает ни с одним из определенных
+                                            // маршрутов,
 ]
 
 @NgModule({
